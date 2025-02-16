@@ -32,6 +32,7 @@
             label1 = new Label();
             button1 = new Button();
             label2 = new Label();
+            checkBox1 = new CheckBox();
             SuspendLayout();
             // 
             // textBox1
@@ -69,11 +70,24 @@
             label2.TabIndex = 3;
             label2.Text = "Status: Not Changed";
             // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Checked = true;
+            checkBox1.CheckState = CheckState.Checked;
+            checkBox1.Location = new Point(14, 101);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(252, 19);
+            checkBox1.TabIndex = 4;
+            checkBox1.Text = "Copy files into safe folder (Recommended)";
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(292, 129);
+            Controls.Add(checkBox1);
             Controls.Add(label2);
             Controls.Add(button1);
             Controls.Add(label1);
@@ -90,5 +104,6 @@
         private Label label1;
         private Button button1;
         private Label label2;
+        private CheckBox checkBox1;
     }
 }

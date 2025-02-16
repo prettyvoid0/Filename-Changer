@@ -1,4 +1,4 @@
-using System.IO;
+﻿using System.IO;
 
 namespace SetNamesToNumbers
 {
@@ -33,12 +33,30 @@ namespace SetNamesToNumbers
             var filesCount = files.Count;
             var counter = 1;
 
-            for (int i = 0; i < filesCount; i++)
+            if (checkBox1.Checked)
             {
-                label2.Text = $"Status: In progress ({counter}/{filesCount})";
-                files[i].MoveTo($"{directory.FullName}\\Screenshots\\{counter++}.jpg");
+                var copyDirectoryName = directory.FullName + $"_copy";
+                Directory.CreateDirectory(copyDirectoryName);
+                foreach (var file in files)
+                {
+                    file.CopyTo($"{copyDirectoryName}\\{file.Name}");
+                }
             }
 
+            var tempDirectoryPath = directory.FullName + "_temp";
+            Directory.CreateDirectory(tempDirectoryPath);
+            foreach (var file in files)
+            {
+                file.MoveTo($"{tempDirectoryPath}\\{file.Name}");
+            }
+
+            foreach (var file in files)
+            {
+                label2.Text = $"Status: In progress ({counter}/{filesCount})";
+                file.MoveTo($"{directory.FullName}\\{counter++}.jpg");
+            }
+
+            Directory.Delete(tempDirectoryPath);
             label2.Text = $"Status: Done";
         }
     }
